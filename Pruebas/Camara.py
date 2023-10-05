@@ -63,7 +63,8 @@ while True:
             cv2.putText(frame, "Verde", (x, y),
                         cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0))
 
-    cv2.imshow('frame', frame)
+    frame2 = cv2.flip(frame,1)
+    cv2.imshow('frame', frame2)
 
     if cv2.waitKey(2) == ord('q'):
         break
