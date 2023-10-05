@@ -35,7 +35,7 @@ while True:
 
     for pic, contour in enumerate(contours):
         area = cv2.contourArea(contour)
-        if (area > 800):
+        if (area > 2000):
             x, y, w, h = cv2.boundingRect(contour)
             frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255))
             cv2.putText(frame, "Rojo", (x, y),
@@ -63,8 +63,7 @@ while True:
             cv2.putText(frame, "Verde", (x, y),
                         cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0))
 
-    frame2 = cv2.flip(frame,1)
-    cv2.imshow('frame', frame2)
+    cv2.imshow('frame', frame)
 
     if cv2.waitKey(2) == ord('q'):
         break
