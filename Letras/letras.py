@@ -11,12 +11,16 @@ counter = 0
 
 while True:
     ret,frame = cap.read()
-    counter == 1
+    img = cv2.cvtColor(frame, cv2.COLOR_BAYER_BG2GRAY)
+    kernel = np.ones((1,1), np.uint8)
+    img = cv2.dilate(img, kernel, iterations=1)
+    img = cv2.erode(img, kernel, iterations=1)
+    img = tireshold(cv2.medianBlur(img,3), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_TRIANGLE)
 
     if((counter%20)==0):
         imgH, imgW,_ = frame.shape
         x1,y1,w1,h1 = 0,0,imgH,imgW
-
+        
         imgchar = pytesseract.image_to_string(frame)
         img_boxes = pytesseract.image_to_boxes(frame)
 
