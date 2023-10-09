@@ -10,12 +10,12 @@ counter = 0
 
 
 while True:
-    ret,frame = cap.read()
+    ret,img = cap.read()
     img = cv2.cvtColor(frame, cv2.COLOR_BAYER_BG2GRAY)
     kernel = np.ones((1,1), np.uint8)
     img = cv2.dilate(img, kernel, iterations=1)
     img = cv2.erode(img, kernel, iterations=1)
-    img = tireshold(cv2.medianBlur(img,3), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_TRIANGLE)
+    img = threshold(cv2.medianBlur(img,3), 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
     if((counter%20)==0):
         imgH, imgW,_ = frame.shape
